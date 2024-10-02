@@ -1,0 +1,76 @@
+picotron cartridge // www.picotron.net
+version 2
+
+:: gfx/
+:: gfx/0.gfx
+b64$LS1bW3BvZCxjcmVhdGVkPSIyMDI0LTEwLTAyIDE0OjU2OjEwIixtb2RpZmllZD0iMjAyNC0x
+MC0wMiAxNjoxMTowMiIscmV2aXNpb249MTg1XV1sejQAfgAAABIxAADzIXtbMF09e2JtcD1weHUA
+QyAQEATwVgcQB8AX0BfABxAH8FYsZmxhZ3M9MCxwYW5feAgAy3k9MCx6b29tPTh9LD4AH-AxAP--
+-------------------------------------------------------------9dQbT04fX0=
+:: gfx/.info.pod
+b64$LS1bW3BvZCxjcmVhdGVkPSIyMDI0LTEwLTAyIDE1OjAyOjE4Iixtb2RpZmllZD0iMjAyNC0x
+MC0wMiAxNjoxMTowMiJdXQ==
+:: map/
+:: map/0.map
+b64$LS1bW3BvZCxjcmVhdGVkPSIyMDI0LTEwLTAyIDE0OjU2OjEwIixtb2RpZmllZD0iMjAyNC0x
+MC0wMiAxNjoxMTowMiIscmV2aXNpb249MTg1XV1sejQAaAAAAFgQAADwCHt7Ym1wPXVzZXJkYXRh
+KCJpMTYiLDMyAwAvIjABAP--------------------vxCCIpLGhpZGRlbj1mYWxzZSxwYW5feD0w
+CADSeT0wLHRpbGVfaD0xNgoAEHcKAIB6b29tPTF9fQ==
+:: map/.info.pod
+b64$LS1bW3BvZCxjcmVhdGVkPSIyMDI0LTEwLTAyIDE1OjAyOjE4Iixtb2RpZmllZD0iMjAyNC0x
+MC0wMiAxNjoxMTowMiJdXQ==
+:: sfx/
+:: sfx/0.sfx
+b64$LS1bW3BvZCxjcmVhdGVkPSIyMDI0LTEwLTAyIDE0OjU2OjEwIixtb2RpZmllZD0iMjAyNC0x
+MC0wMiAxNjoxMTowMiIscmV2aXNpb249MTg1XV1sejQAoAAAAAsKAAD-MHB4dQADKAAABAAED0AQ
+Ag4AAaABIAKgDgAPEAAN8MoBAgNADw_QBAUGB0AMkAgJCgtADJAPDA8NDw4MQAzw-wEA6-8nqgEQ
+Bg8gEAEgASAB8AACEAIOEAEgDyEgATAPQPDDDygP--DGD-gKD-8PgA-3Dw0B8AkBEAYOMAD-----
+-70f-wEArM-ID0AADxBA--_w8P8BAP-qUP----8p
+:: sfx/.info.pod
+b64$LS1bW3BvZCxjcmVhdGVkPSIyMDI0LTEwLTAyIDE1OjAyOjE4Iixtb2RpZmllZD0iMjAyNC0x
+MC0wMiAxNjoxMTowMiJdXQ==
+:: Walker.lua
+--[[pod_format="raw",created="2024-10-02 15:06:36",modified="2024-10-02 16:11:02",revision=226]]
+
+function Walker()
+	Walker = {xPosition = 50, yPosition = 50}
+	return Walker
+end
+
+function step()
+	choice = flr(rnd(4))
+	
+	if choice == 0 then
+		Walkers[1].xPosition += 1
+	elseif choice == 1 then
+		Walkers[1].xPosition -= 1
+	elseif choice == 2 then
+		Walkers[1].yPosition += 1
+	else 
+		Walkers[1].yPosition -= 1
+	end
+end
+:: main.lua
+--[[pod_format="raw",created="2024-10-02 14:56:10",modified="2024-10-02 16:11:02",revision=263]]
+include "Walker.lua"
+
+Walkers = {}
+function _init()
+	add(Walkers,Walker())
+end
+
+function _update()
+	step()
+end
+
+function _draw()
+	circfill(Walkers[1].xPosition, Walkers[1].yPosition, 1, 10)
+end
+:: .info.pod
+b64$LS1bW3BvZCxjcmVhdGVkPSIyMDI0LTEwLTAyIDE1OjAxOjM5Iixtb2RpZmllZD0iMjAyNC0x
+MC0wMiAxNjoxMTowMiIscnVudGltZT0xMSx3b3Jrc3BhY2VzPXt7bG9jYXRpb249Im1haW4ubHVh
+IzEyIix3b3Jrc3BhY2VfaW5kZXg9MX0se2xvY2F0aW9uPSJXYWxrZXIubHVhIzE4Iix3b3Jrc3Bh
+Y2VfaW5kZXg9MX0se2xvY2F0aW9uPSJnZngvMC5nZngiLHdvcmtzcGFjZV9pbmRleD0yfSx7bG9j
+YXRpb249Im1hcC8wLm1hcCIsd29ya3NwYWNlX2luZGV4PTN9LHtsb2NhdGlvbj0ic2Z4LzAuc2Z4
+Iix3b3Jrc3BhY2VfaW5kZXg9NH19XV0=
+:: [eoc]
